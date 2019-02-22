@@ -281,6 +281,17 @@ export default class Dropdown extends PureComponent {
         + dropdownOffset.top
         - itemPadding;
 
+      let itemSize = this.itemSize();
+      let visibleItemCount = this.visibleItemCount();
+
+      let height = 2 * itemPadding + itemSize * visibleItemCount;
+
+      console.log(top, height, itemPadding, dimensions.height);
+
+      if (top + height + 3 * itemPadding > dimensions.height) {
+        top = dimensions.height - height - 3 * itemPadding;
+      }
+
       this.setState({
         modal: true,
         width: right - left,
